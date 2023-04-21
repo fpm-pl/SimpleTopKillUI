@@ -1,0 +1,11 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/FRashkar-pm/SimpleTopKillUI
+build-by-default: true
+branches:
+- main
+projects:
+  SimpleTopKillUI:
+    path: ""
+    libs:
+      - src: Vecnavium/FormsUI/FormsUI
+        version: ^1.1.2
+...
