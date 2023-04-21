@@ -13,16 +13,15 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as T;
 use pocketmine\Server;
-use jojoe77777\FormAPI\SimpleForm;
+use Vecnavium\FormsUI\SimpleForm;
 
 class Loader extends PluginBase implements Listener {
 
     public $n;
-	private static Loader $loader;
+    private static Loader $loader;
     public Config $kill_record;
     
     public function onEnable(): void {
-        $this->getServer()->getPluginManager()->getPlugin("FormAPI");
     	$this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
         $this->kill_record = new Config($this->getDataFolder() . "/kills.yml", Config::YAML);
