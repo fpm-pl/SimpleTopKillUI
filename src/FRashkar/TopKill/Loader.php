@@ -18,14 +18,12 @@ use Vecnavium\FormsUI\SimpleForm;
 class Loader extends PluginBase implements Listener {
 
     public $n;
-    private static Loader $loader;
     public Config $kill_record;
     
     public function onEnable(): void {
     	$this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
         $this->kill_record = new Config($this->getDataFolder() . "/kills.yml", Config::YAML);
-    	self::$loader = $this;
     }
     
     public function onJoin(PlayerJoinEvent $ev){
@@ -114,9 +112,5 @@ class Loader extends PluginBase implements Listener {
         	$kr->set($key, $value);
             $kr->save();
         }
-    }
-    
-    public static function getInstance(): Loader{
-    	$this->loader = $loader;
     }
 }
