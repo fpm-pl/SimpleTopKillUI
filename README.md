@@ -7,8 +7,8 @@ This is an example screenshot.
 
 # Commands
 
-```/topkill, /tk```
+`/topkill, /tk`
 
 # Permissions
 
-```topkill.use```
+`topkill.use`
