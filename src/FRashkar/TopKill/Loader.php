@@ -29,9 +29,8 @@ class Loader extends PluginBase implements Listener
     public function onJoin(PlayerJoinEvent $ev) : void 
     {
     	$p = $ev->getPlayer();
-        if(!$this->kill_record->get($p->getName()))
-        {
-        	$this->kill_record->set($p->getName(), 0);
+        if(!$this->kill_record->get($p->getName())){
+            $this->kill_record->set($p->getName(), 0);
             $this->kill_record->save();
         }
     }
@@ -40,26 +39,22 @@ class Loader extends PluginBase implements Listener
     {
     	$p = $ev->getPlayer();
         $cause = $p->getLastDamageCause();
-        if($cause instanceof EntityDamageByEntityEvent)
-        {
-        	$killer = $cause->getDamager();
-        	if($killer instanceof Player)
-            {
-        		$this->addKill($killer);
+        if($cause instanceof EntityDamageByEntityEvent){
+            $killer = $cause->getDamager();
+            if($killer instanceof Player){
+                $this->addKill($killer);
             }
         }
     }
     
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool
     {
-        if (!$sender instanceof Player)
-        {
+        if (!$sender instanceof Player){
             $sender->sendMessage("Use it in-game please!");
             return true;
         }
         
-    	switch($command->getName()) 
-        {
+    	switch($command->getName()){
         	case "topkill":
                 $this->openUI($sender);
                 return true;
@@ -73,13 +68,11 @@ class Loader extends PluginBase implements Listener
         $r = "";
         $data = $this->kill_record->getAll();
         
-        if(count($data) > 0)
-        {
+        if(count($data) > 0){
             arsort($data);
             $n = 1;
             
-        	foreach($data as $name => $kill)
-            {
+        	foreach($data as $name => $kill){
                 $r .= "§a» §fTop (" . $n . ")§e " . $name . "§f, " . $kill . " kills" . "\n";
                 
                 if($n >= 10){
@@ -90,9 +83,8 @@ class Loader extends PluginBase implements Listener
     	}
     	$form = new SimpleForm(function(Player $player, int $r = null) : void
         {
-        	if($r === null) return;
-            switch($r)
-            {
+            if($r === null) return;
+            switch($r){
                 case "0":
                     break;
             }
@@ -112,15 +104,13 @@ class Loader extends PluginBase implements Listener
         $kr->save();
         
         $array = [];
-        foreach($kr->getAll() as $key => $value)
-        {
+        foreach($kr->getAll() as $key => $value){
         	$array[$key] = $value;
             $kr->remove($key);
         }
         
         arsort($array);
-        foreach($array as $key => $value)
-        {
+        foreach($array as $key => $value){
         	$kr->set($key, $value);
             $kr->save();
         }
