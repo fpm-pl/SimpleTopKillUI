@@ -53,12 +53,9 @@ class Loader extends PluginBase implements Listener
             $sender->sendMessage("Use it in-game please!");
             return true;
         }
-        
-    	switch($command->getName()){
-        	case "topkill":
-                $this->openUI($sender);
-                return true;
-                break;
+        if ($command->getName() === "topkill"){
+            $this->openUI($sender);
+            return true;
         }
         return false;
     }
