@@ -12,4 +12,4 @@ commands:
 permissions:
   topkill.use:
     description: Allow you to use topkill!
-    default: op
+    default: true
