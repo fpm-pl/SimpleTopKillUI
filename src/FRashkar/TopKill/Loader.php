@@ -22,7 +22,6 @@ class Loader extends PluginBase implements Listener
     public function onEnable() : void 
     {
     	$this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->saveDefaultConfig();
         $this->kill_record = new Config($this->getDataFolder() . "/kills.yml", Config::YAML);
     }
     
@@ -94,7 +93,7 @@ class Loader extends PluginBase implements Listener
         $p->sendForm($form);
     }
     
-    public function addKill(Player $player)
+    public function addKill(Player $player) : void
     {
     	$kr = $this->kill_record;
         $kr->set($player->getName(), $kr->get($player->getName()) +1);
